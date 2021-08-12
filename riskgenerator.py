@@ -94,7 +94,7 @@ def ec2_risk_calculation(h,d,t):
     
     return json.dumps({
         "risk_values":values,
-        "elapsed_time": elapsed_time,
+        "ElapsedTime": elapsed_time,
     })
 
 
