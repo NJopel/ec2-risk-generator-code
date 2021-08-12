@@ -79,7 +79,7 @@ def ec2_risk_calculation(h,d,t):
     j=0
     for i in range(minhistory, len(data)):
         if signal == "buy":
-            if data.Buy[i]==t: # if we’re interested in Buy signals
+            if data.Buy[i]==1: # if we’re interested in Buy signals
 
                 # print("the date - ",data["Date"][i])
                 mean=data.Close[i-minhistory:i].pct_change(1).mean()
@@ -93,7 +93,7 @@ def ec2_risk_calculation(h,d,t):
                 values.append([str(data["Date"][i]),var95, var99])
 
         elif signal == "sell":
-            if data.Sell[i]==t: # if we’re interested in Buy signals
+            if data.Sell[i]==1: # if we’re interested in Buy signals
 
                 # print("the date - ",data["Date"][i])
                 mean=data.Close[i-minhistory:i].pct_change(1).mean()
