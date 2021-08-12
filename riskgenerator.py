@@ -93,17 +93,17 @@ def ec2_risk_calculation(h,d,t):
     elapsed_time = str(time.time() - start)
     
     return json.dumps({
-        "values":values,
+        "risk_values":values,
         "elapsed_time": elapsed_time,
     })
 
 
 
-print ('# Args:', len(sys.argv))
-print ('Argument List:', str(sys.argv))
+# print ('# Args:', len(sys.argv))
+# print ('Argument List:', str(sys.argv))
 
-print(sys.argv)
-print(sys.argv[1],sys.argv[2],sys.argv[3])
+# print(sys.argv)
+# print(sys.argv[1],sys.argv[2],sys.argv[3])
 
 
 
