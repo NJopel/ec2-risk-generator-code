@@ -117,12 +117,4 @@ def ec2_risk_calculation(h,d,t):
 
 
 
-# print ('# Args:', len(sys.argv))
-# print ('Argument List:', str(sys.argv))
-
-# print(sys.argv)
-# print(sys.argv[1],sys.argv[2],sys.argv[3])
-
-
-
 sys.stdout.write(ec2_risk_calculation(int(sys.argv[1]),int(sys.argv[2]),int(sys.argv[3])))
