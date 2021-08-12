@@ -70,24 +70,42 @@ def ec2_risk_calculation(h,d,t):
     values=[]
     data = fetch_data()
     minhistory = h
+    if t == 1:
+        signal = "buy"
+    else:
+        signal ="sell"
     
     shots = d
     j=0
     for i in range(minhistory, len(data)):
-        if data.Buy[i]==t: # if we’re interested in Buy signals
+        if signal == "buy":
+            if data.Buy[i]==t: # if we’re interested in Buy signals
 
-            # print("the date - ",data["Date"][i])
-            mean=data.Close[i-minhistory:i].pct_change(1).mean()
-            std=data.Close[i-minhistory:i].pct_change(1).std()
-            # generate much larger random number series with same broad characteristics
-            simulated = [random.gauss(mean,std) for x in range(shots)]
-            # sort and pick 95% and 99%  - not distinguishing long/short here
-            simulated.sort(reverse=True)
-            var95 = simulated[int(len(simulated)*0.95)]
-            var99 = simulated[int(len(simulated)*0.99)]
-            values.append([str(data["Date"][i]),var95, var99])
-            # j=j+1
-            # print(j,i,var95, var99) # so you can see what is being produced
+                # print("the date - ",data["Date"][i])
+                mean=data.Close[i-minhistory:i].pct_change(1).mean()
+                std=data.Close[i-minhistory:i].pct_change(1).std()
+                # generate much larger random number series with same broad characteristics
+                simulated = [random.gauss(mean,std) for x in range(shots)]
+                # sort and pick 95% and 99%  - not distinguishing long/short here
+                simulated.sort(reverse=True)
+                var95 = simulated[int(len(simulated)*0.95)]
+                var99 = simulated[int(len(simulated)*0.99)]
+                values.append([str(data["Date"][i]),var95, var99])
+
+        elif signal == "sell":
+            if data.Sell[i]==t: # if we’re interested in Buy signals
+
+                # print("the date - ",data["Date"][i])
+                mean=data.Close[i-minhistory:i].pct_change(1).mean()
+                std=data.Close[i-minhistory:i].pct_change(1).std()
+                # generate much larger random number series with same broad characteristics
+                simulated = [random.gauss(mean,std) for x in range(shots)]
+                # sort and pick 95% and 99%  - not distinguishing long/short here
+                simulated.sort(reverse=True)
+                var95 = simulated[int(len(simulated)*0.95)]
+                var99 = simulated[int(len(simulated)*0.99)]
+                values.append([str(data["Date"][i]),var95, var99])
+            
 
 
     elapsed_time = str(time.time() - start)
